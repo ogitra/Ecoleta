@@ -1,25 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.module.css';
+
+import { BrowserRouter, Route } from 'react-router-dom';
+import CreatePoint from '../src/container/createPoint/createPoint';
+import Home from '../src/container/home/home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Route component={CreatePoint} path='/cadastro'></Route>
+      <Route component={Home} path='/' exact></Route>
+    </BrowserRouter>
   );
 }
 

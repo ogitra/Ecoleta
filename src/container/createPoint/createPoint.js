@@ -6,14 +6,51 @@ import { NavLink } from 'react-router-dom';
 import Input from '../../components/input';
 import Axios from 'axios';
 import { Map, TileLayer, Marker } from 'react-leaflet';
+import { ReactComponent as Battery } from '../../assets/baterias.svg';
+import { ReactComponent as Eletronics } from '../../assets/eletronicos.svg';
+import { ReactComponent as Lamps } from '../../assets/lampadas.svg';
+import { ReactComponent as Oil } from '../../assets/oleo.svg';
+import { ReactComponent as Organic } from '../../assets/organicos.svg';
+import { ReactComponent as Paper } from '../../assets/papeis-papelao.svg';
 
 const CreatePoint = () => {
   const [uf, setUf] = useState([]);
   const [selectedUF, setSelectedUF] = useState([]);
   const [city, setCity] = useState([]);
   const [data, setData] = useState({});
-  const [items, setItems] = useState([]);
   const [selectedItems, setselectedItems] = useState([]);
+  const [items] = useState([
+    {
+      id: 1,
+      title: 'Lâmpadas',
+      img: <Lamps />,
+    },
+    {
+      id: 2,
+      title: 'Pilhas e Baterias',
+      img: <Battery />,
+    },
+    {
+      id: 3,
+      title: 'Papéis e Papelão',
+      img: <Paper />,
+    },
+    {
+      id: 4,
+      title: 'Resíduos Eletrônicos',
+      img: <Eletronics />,
+    },
+    {
+      id: 5,
+      title: 'Resíduos Orgânicos',
+      img: <Organic />,
+    },
+    {
+      id: 6,
+      title: 'Óleo de Cozinha',
+      img: <Oil />,
+    },
+  ]);
 
   useEffect(() => {
     Axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then((response) => {
@@ -48,12 +85,6 @@ const CreatePoint = () => {
     setData(prevData);
   }
 
-  useEffect(() => {
-    Axios.get('https://nlw-adv.firebaseio.com/Items.json').then((response) => {
-      setItems(response.data);
-    });
-  }, []);
-
   function onSelectItem(id) {
     const ids = [...selectedItems];
 
@@ -67,9 +98,9 @@ const CreatePoint = () => {
   }
 
   return (
-    <div className={classes.createPoint__container}>
-      <div className={classes.createPoint__content}>
-        <header>
+    <div className={classes.container}>
+      <div className={classes.container__content}>
+        <header className={classes.header}>
           <img src={Logo} alt='logo' />
           <NavLink to='/' className={classes.buttonBack}>
             <span>
@@ -98,7 +129,7 @@ const CreatePoint = () => {
             <Input
               className={classes.inputPoint}
               label='Whatsapp'
-              type='number'
+              type='text'
               onChange={(evt) => handleInput(evt, 'whats')}
             ></Input>
           </fieldset>
@@ -109,7 +140,7 @@ const CreatePoint = () => {
               <p>Selecione o endreço no mapa</p>
             </div>
 
-            <Map center={[-23.6152952, -46.5258909]} zoom={16}>
+            <Map center={[-23.6152952, -46.5258909]} zoom={16} className={classes.leaflet_container}>
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -159,15 +190,14 @@ const CreatePoint = () => {
                   aqui
                   onClick={() => onSelectItem(item.id)}
                 >
-                  <img src={require('../../assets/oleo.svg')} alt={item.title} />
+                  {item.img}
                   <span>{item.title}</span>
                 </li>
               ))}
             </ul>
           </fieldset>
-          <button className={classes.submit} Cadastrar>
-            {' '}
-            ponto de coleta
+          <button className={classes.button} type='submit'>
+            Cadastrar ponto de coleta
           </button>
         </form>
       </div>

@@ -1,37 +1,32 @@
-.home__container {
-  max-width: 1300px;
+.container {
+  max-width: 81.25rem;
   height: 100vh;
   margin: 0 auto;
 }
 
-.home__content {
+.container_content {
   background-image: url(../../assets/home-background.svg);
   background-repeat: no-repeat;
-  background-position: 400px 100px;
+  background-position: 25rem 6.25rem;
   height: 100%;
   padding: 2rem;
 }
 
-.content header {
-  display: flex;
-  justify-content: space-between;
-}
-
-main {
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
 }
 
-main h1 {
+.main__title {
   font-family: Ubuntu;
   color: var(--darkPurple);
   font-size: 3.37rem;
   margin: 0 0 1rem 0;
 }
 
-main p {
+.main__text {
   margin-top: 0px;
   color: var(--lightPurple);
   font-family: Roboto;
@@ -41,25 +36,42 @@ main p {
 }
 
 .search__container {
-  width: 23vw;
-  height: 8vh;
+  width: 17rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   background-color: var(--green);
   border-radius: 8px;
-  padding: 0 0.5rem;
-  max-width: 205px;
 }
 
-.search__item {
+.icon__container {
+  background: rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon {
   stroke: white;
-  width: 35%;
-  height: 55%;
+  width: 3rem;
+  height: 1.3rem;
 }
 
-.search__description {
+.search__text {
   font-size: 1.2rem;
-  line-height: normal;
+  font-family: Roboto;
   color: white;
-  margin: 0;
+  margin-left: 4rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    text-align: center;
+  }
+  .main {
+    margin-top: 4rem;
+    align-items: center;
+    height: 70%;
+  }
 }

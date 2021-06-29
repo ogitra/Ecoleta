@@ -6,23 +6,26 @@ import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div className={classes.home__container}>
-      <div className={classes.home__content}>
-        <header>
+    <div className={classes.container}>
+      <div className={classes.container_content}>
+        <header className={classes.header}>
           <img src={Logo} alt='logo' />
         </header>
-        <main>
-          <h1>
+        <main className={classes.main}>
+          <h1 className={classes.main__title}>
             Seu marketplace <br />
             de coleta de resíduos
           </h1>
-          <p>
+          <p className={classes.main__text}>
             Ajudamos pessoas a encontrarem pontos <br />
             de coleta de forma eficiente
           </p>
           <NavLink to='/cadastro' className={classes.search__container}>
-            <FiLogIn className={classes.search__item}></FiLogIn>
-            <p className={classes.search__description}>Cadastro</p>
+            <span className={classes.icon__container}>
+              <FiLogIn className={classes.icon}></FiLogIn>
+            </span>
+
+            <p className={classes.search__text}>Cadastrar</p>
           </NavLink>
         </main>
       </div>
